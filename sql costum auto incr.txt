@@ -1,0 +1,12 @@
+saya punya database my sebagai berikut :
+    1	id_user Primary	varchar(100)				
+	2	nama_users	varchar(50)				
+	3	mor_induk	varchar(50)				
+	4	password	varchar(255)				
+	5	prodi	varchar(25)				
+	6	email	varchar(25)				
+	7	no_telp	varchar(25)				
+	8	alamat	varchar(150)				
+	9	role	varchar(12)		
+
+buatlah agar dia memiliki auto increment angka dengan format depan "IDU" contoh "IDU00001" 		

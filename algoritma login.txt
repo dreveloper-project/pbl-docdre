@@ -1,0 +1,28 @@
+algoritma proses login
+
+
+
+cocokan $datadariclient dengan data server
+
+$datadariserver = 'select from database where nim = nim dari server'
+
+if ($datadariserver) {
+	
+	if(password =  password dari server){
+
+	loginberhasil
+}
+
+else {
+	password salah
+
+}
+
+}
+else {
+
+user tidak ditemukan
+
+}
+
+$row[0]["password"]

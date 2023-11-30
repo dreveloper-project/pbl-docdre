@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menampilkan Data dalam Kartu</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        /* Tambahkan gaya CSS sesuai kebutuhan Anda */
+        #tabelSumber {
+            margin-bottom: 20px;
+        }
+        .card {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            width: 200px;
+            text-align: center;
+        }
+        .disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Tabel Sumber (Tabel yang sudah ada) -->
+<table id="tabelSumber">
+    <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Usia</th>
+            <th>Aksi</th> <!-- Kolom untuk tombol pilih -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>John Doe</td>
+            <td>25</td>
+            <td><button class="pilih">Pilih</button></td>
+        </tr>
+        <tr>
+            <td>Jane Doe</td>
+            <td>30</td>
+            <td><button class="pilih">Pilih</button></td>
+        </tr>
+        <!-- Tambahkan baris lain sesuai kebutuhan Anda -->
+    </tbody>
+</table>
+
+<!-- Area Kartu (Card) untuk Menampilkan Data yang Dipilih -->
+<div id="areaKartu"></div>
+
+<script>
+    $(document).ready(function () {
+        // Tambahkan event click pada tombol pilih
+        $('#tabelSumber').on('click', '.pilih:not(.disabled)', function () {
+            // Pilih data dari baris yang memiliki tombol pilih
+            var dataBaris = $(this).closest('tr').find('td').map(function () {
+                return $(this).text();
+            }).get();
+
+            // Tambahkan data ke area kartu
+            var kartu =
+                '<div class="card">' +
+                    '<p><strong>Nama:</strong> ' + dataBaris[0] + '</p>' +
+                    '<p><strong>Usia:</strong> ' + dataBaris[1] + '</p>' +
+                    '<button class="hapus">Hapus</button>' +
+                '</div>';
+
+            $('#areaKartu').append(kartu);
+
+            // Nonaktifkan tombol pilih pada baris yang sudah dipilih
+            $(this).addClass('disabled');
+        });
+
+        // Tambahkan event click pada tombol hapus di area kartu
+        $('#areaKartu').on('click', '.hapus', function () {
+            // Hapus kartu dari area kartu
+            $(this).closest('.card').remove();
+
+            // Aktifkan kembali tombol pilih pada baris yang sudah dihapus
+            var namaBaris = $(this).closest('.card').find('p:first strong').text();
+            $('#tabelSumber tbody tr').each(function () {
+                var namaSumber = $(this).find('td:first').text();
+                if (namaSumber === namaBaris) {
+                    $(this).find('.pilih').removeClass('disabled');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

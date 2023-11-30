@@ -1,0 +1,18 @@
+kerangka aplikasi 
+	
+	-> models
+	-> views
+	-> controller
+
+	core app
+	ketika di panggil di indeks php akan memanggil controller sesuai dengan url
+	
+	controllers
+	merespons dengan data sesuai logika yang kita buat. misalnya views yang berisi data dari database
+
+
+pertanyaan ?
+	- cara membuat middleware dan implementasinya 
+	- cara membuat memproses $_post
+	- cara menggunakan PDO dan .env 
+	

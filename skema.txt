@@ -1,0 +1,160 @@
+#login
+
+# dashboard untuk admin
+    - manajemen user
+    - penerbitan dokumen tugas $$$
+    - pengaturan akunnya (reset kata sandi)
+
+# dashboard untuk dosen 
+    - penerbitan dokumen tugas $$$
+    - pengaksesan dokumen beserta search dan edit
+        - apabila ada dokumen yang diterbitkan untuk dosen maka highlight dokumen tersebut
+
+    - info dokumen kiriman notif
+
+# bagaimana cara nya menyajikan surat tugas dan dokumen lainnya ?
+
+                untuk administrator
+                            dokumen
+                    
+                                    surat tugas
+                                        - terbitkan
+                                              
+
+                                    beasiswa
+                                        - terbitkan
+
+                            manajemen user
+
+                                    list user
+
+                                    insert user
+
+
+                untuk dosen
+                            dokumen
+                    
+                                    surat tugas
+                                        - terbitkan
+                                            -> for mahasiswa
+                                        - diterima
+
+                                    dokumen pribadi
+
+                untuk mahasiswa
+                            dokumen
+                    
+                                    surat tugas
+                                        - terbitkan
+                                        - diterima
+
+                                    beasiswa
+                                        - diterima
+
+# bentuk database 
+    (id dibuat dengan costum prefix)
+    
+    tabel user 
+        id_user    nama_user     password      role      nim     prodi     email     no_telp    alamat    
+
+    tabel surat_tugas
+        id_surat   nama_surat   file_surat   id_user(merupakan penerbit dan foreign key ke tabel user)   deskripsi   tanggal 
+
+
+    tabel dokumen 
+        Id_dokumen   nama_dokumen   file_dokumen   id_user(foreign key)   deskripsi   tanggal 
+
+    tabel beasiswa
+        id_beasiswa    nama_beasiswa   file_beasiswa   deskripsi   tanggal
+    
+
+    tabel penerima_surat_tugas
+        id_penerimaan id_surat(foreign key)  id_user(penerima foreign key)
+
+    tabel notifikasi 
+        id_notifikasi    id_user   $id_surat    status(dibaca/belum)
+
+
+
+
+
+# mekanisme peneriman surat
+
+    * controller surat
+        - method terbit surat ()
+
+
+
+                 <start>
+                
+
+
+
+                 inputan dari pengguna { 
+                                         array kumpulan penerima (berisi kumpulan nomor induk user),
+                                        id_surat   nama_surat   file_surat   id_user(merupakan penerbit dan foreign key ke tabel user)   deskripsi   tanggal, 
+                                        }
+                <>
+
+
+                 // insert surat tugas baru  ke database
+                 INSERT INTO DATABASE DATA SURATNYA
+
+                <>
+
+                //  daftarkan penerimanya
+                foreach ($kumpulan_penerima as $value) {
+
+                INSERT INTO penerima_surat ( id_surat, id_user) VALUES 
+                        ( $this->id_surat, $value)
+
+
+                aktifkanNotif($value, $id_surat);
+
+                }
+
+                <>
+
+                change page with notif success
+
+
+
+
+
+
+
+# mekanisme notifikasi
+
+    aktifkanNotif akan dijalankan ketika proses terbit surat dijalankan
+    
+   method
+    *aktifkannotif($id_user, id surat) {
+
+        insert into tabel notif { id_user   $id_surat    status(belum dibaca) }
+    
+    } ;
+
+
+    saat user masuk ke dashboard controller akan menampilkan highligh data notif yaitu =  SELECT * FROM notif where id = id user & status = belum dibaca
+    dan dibawah nya SELECT * FROM notif where id = id user & status = dibaca
+
+
+# mekanisme pemilihan user untuk surat surat_tugas
+
+
+
+   
+
+
+
+
+
+
+
+     
+
+
+
+                        
+
+    

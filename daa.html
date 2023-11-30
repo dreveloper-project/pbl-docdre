@@ -1,0 +1,40 @@
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title fw-bold">${namaUser}</h5>
+        <p class="card-text">
+            <i class="bi bi-person-fill"></i>
+            Role: ${role}
+        </p>
+        <p class="card-text">
+            <i class="bi bi-credit-card-fill"></i>
+            Nomor Induk: ${nomorInduk}
+        </p>
+        <p class="card-text">
+            <i class="bi bi-mortarboard-fill"></i>
+            Program Studi: ${prodi}
+        </p>
+
+        <input type="text" name="data[]" value="${namaUser}" style="display: none;">
+
+        <button type="button" class="btn btn-danger btn-sm btn-delete">
+            <i class="bi bi-trash"></i>
+            Hapus
+        </button>
+    </div>
+</div>
+
+
+
+<div class="card shadow" >
+    <div class="card-body">
+        <h5 class="card-title fw-bold">${namaUser}</h5>
+        <h5 class="card-title">Role: ${role}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Nomor Induk: ${nomorInduk}</h6>
+        <p class="card-text"></p>
+        <input type="text" name="data[]" value="${namaUser}" style="display: none;">
+        <button type="button" class="btn btn-danger btn-sm btn-delete">
+            <i class="bi bi-trash"></i>
+            Hapus
+        </button>
+    </div>
+</div>
